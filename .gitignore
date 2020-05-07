@@ -1,2 +1,8 @@
 node_modules
 package-lock.json
+investimentos
+build-n-inject.config.json
+qa
+dev
+stage
+prod
