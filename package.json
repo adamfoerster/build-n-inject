@@ -1,0 +1,22 @@
+{
+  "name": "build-n-inject",
+  "version": "1.0.0",
+  "description": "Build and than inject enviroment variables",
+  "main": "build-n-inject.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamfoerster/build-n-inject.git"
+  },
+  "author": "Adam Foerster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamfoerster/build-n-inject/issues"
+  },
+  "homepage": "https://github.com/adamfoerster/build-n-inject#readme",
+  "dependencies": {
+    "sass": "^1.26.5"
+  }
+}
