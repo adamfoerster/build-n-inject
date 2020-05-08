@@ -5,13 +5,11 @@ const state = {
   config: null,
 };
 
-const buildNInject = async (state) => {
-  await loadConfig(state);
+const buildNInject = (state) => {
+  loadConfig(state);
   getBranch(state);
   build(state);
-  copyDir(state);
   console.log(state);
-  injectFiles();
 };
 
 const getBranch = async (state) => {
@@ -26,22 +24,26 @@ const getBranch = async (state) => {
 };
 
 const build = (state) => {
-  child_process.execSync(
-    "cd investimentos && " + state.config.commands[state.branch]
-  );
-};
-
-const copyDir = (state) => {
   state.config.environments.forEach((env) => {
     if (env.branch === state.branch) {
+      
       if (process.platform === "win32") {
-        child_process.execSync(`if exist ${env.copyDir} rmdir ${env.copyDir} /s /q`);
+        child_process.execSync(
+          `if exist ${".\\investimentos\\" + state.config.buildDir.replace("/", "\\")} rmdir ${".\\investimentos\\" + state.config.buildDir.replace("/", "\\")} /s /q`
+        );
+        child_process.execSync("cd investimentos && " + env.build.replace("/", "\\") + " && cd ..") ;
+        child_process.execSync(
+          `if exist ${env.copyDir} rmdir ${env.copyDir} /s /q`
+        );
         child_process.execSync(`mkdir ${env.copyDir}`);
         child_process.execSync(
-          `xcopy .\\${state.config.buildDir.replace("/","\\")} .\\${env.copyDir} /e`
+          `xcopy .\\investimentos\\${state.config.buildDir.replace("/", "\\")} .\\investimentos\\${
+            env.copyDir.replace("/", "\\")
+          } /e /q /y`
         );
       } else {
-        child_process.execSync(`rm -rf ${env.copyDir}`);
+        child_process.execSync(`rm -rf ${env.copyDir} && rm -rf ${state.config.buildDir}`);
+        child_process.execSync("cd investimentos && " + env.build + " && cd ..") ;
         child_process.execSync(`mkdir ${env.copyDir}`);
         child_process.execSync(
           `cp -R ./${state.config.buildDir} ${env.copyDir}/`
@@ -50,8 +52,6 @@ const copyDir = (state) => {
     }
   });
 };
-
-const injectFiles = () => {};
 
 const loadConfig = (state) => {
   state.config = JSON.parse(
