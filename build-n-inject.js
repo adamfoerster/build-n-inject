@@ -46,7 +46,7 @@ const build = (state) => {
         child_process.execSync("cd investimentos && " + env.build + " && cd ..") ;
         child_process.execSync(`mkdir ${env.copyDir}`);
         child_process.execSync(
-          `cp -R ./${state.config.buildDir} ${env.copyDir}/`
+          `cp -R ./${state.config.buildDir}/* ${env.copyDir}/`
         );
       }
     }
