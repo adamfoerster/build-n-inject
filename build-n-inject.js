@@ -42,7 +42,7 @@ const build = (state) => {
           } /e /q /y`
         );
       } else {
-        child_process.execSync(`rm -rf ${env.copyDir} && rm -rf ${state.config.buildDir}`);
+        child_process.execSync(`rm -rf ${env.copyDir} && rm -rf ${'investimentos/' + state.config.buildDir}`);
         child_process.execSync("cd investimentos && " + env.build + " && cd ..") ;
         child_process.execSync(`mkdir ${env.copyDir}`);
         child_process.execSync(
