@@ -1,6 +1,6 @@
 {
   "name": "build-n-inject",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Build and than inject enviroment variables",
   "main": "index.js",
   "scripts": {
