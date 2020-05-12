@@ -9,7 +9,6 @@ const main = (state) => {
   loadConfig(state);
   getBranch(state);
   build(state);
-  console.log(state);
 };
 
 const loadConfig = (state) => {
