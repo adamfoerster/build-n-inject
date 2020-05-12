@@ -2,8 +2,9 @@
   "name": "build-n-inject",
   "version": "1.0.0",
   "description": "Build and than inject enviroment variables",
-  "main": "build-n-inject.js",
+  "main": "index.js",
   "scripts": {
+    "build-n-inject": "node ./node_modules/build-n-inject/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/adamfoerster/build-n-inject/issues"
   },
-  "homepage": "https://github.com/adamfoerster/build-n-inject#readme",
-  "dependencies": {
-    "node-fetch": "^2.6.0"
-  }
+  "homepage": "https://github.com/adamfoerster/build-n-inject#readme"
 }
