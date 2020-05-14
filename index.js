@@ -57,10 +57,14 @@ function build(state) {
       }
       console.log("Moving build to appropriate folder");
       child_process.execSync(`mkdir ${env.copyDir}`);
-      child_process.execSync(`mv ./${state.config.buildDir} ./${env.copyDir}/${state.config.buildDir}`);
-      child_process.execSync(`zip -r ./${env.copyDir}/build.zip ./${env.copyDir}/${state.config.buildDir}`);
+      child_process.execSync(`mv ./${state.config.buildDir} ./${env.copyDir}/${getBuildDirLastFolder(state.config.buildDir)}`);
+      child_process.execSync(`zip -r ./${env.copyDir}/build.zip ./${env.copyDir}/${getBuildDirLastFolder(state.config.buildDir)}`);
     }
   });
+}
+
+function getBuildDirLastFolder(dir) {
+  return dir.split('/')[dir.split('/').length - 1];
 }
 
 main(state);
